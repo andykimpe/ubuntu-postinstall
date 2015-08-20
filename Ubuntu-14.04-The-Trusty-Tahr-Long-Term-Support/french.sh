@@ -113,6 +113,6 @@ sudo apt-get clean
 # Notes vous n'estes pas obligez d'avoir un compte lastpass premium pour utiliser l'extenssion dans votre navigateur.
 export dir=$PWD
 cd /
-wget https://raw.githubusercontent.com/andykimpe/ubuntu-postinstall/master/Ubuntu-14.04-The-Trusty-Tahr-Long-Term-Support/antipubweb.tar.gz
-tar -xvf antipubweb.tar.gz
+sudo wget https://raw.githubusercontent.com/andykimpe/ubuntu-postinstall/master/Ubuntu-14.04-The-Trusty-Tahr-Long-Term-Support/antipubweb.tar.gz
+sudo tar -xvf antipubweb.tar.gz
 cd $dir
