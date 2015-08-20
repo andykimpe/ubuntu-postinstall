@@ -44,6 +44,8 @@ sudo wget http://deb.playonlinux.com/playonlinux_trusty.list -O /etc/apt/sources
 # Activation du depot multisystem
 sudo sh -c 'echo "deb http://liveusb.info/multisystem/depot all main" > /etc/apt/sources.list.d/multisystem.list'
 wget -q http://liveusb.info/multisystem/depot/multisystem.asc -O- | sudo apt-key add -
+# Activation du depot  remmina
+sudo apt-add-repository ppa:remmina-ppa-team/remmina-next -y
 # Mise a jour de la liste des pacquet
 sudo apt-get update
 # Mise a jour du systeme
@@ -96,6 +98,8 @@ sudo rm -f /etc/apt/sources.list.d/proposed.list.save
 sudo apt-get update
 # Installation de playonlinux
 sudo apt-get -y install playonlinux
+# Installation de remmina
+sudo apt-get -y install remmina remmina-plugin-rdp
 # Netoyage des paquets superflu
 sudo apt-get -y autoremove
 # Netoyage du cache de apt
