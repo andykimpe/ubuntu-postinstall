@@ -102,6 +102,8 @@ sudo apt-get -y install playonlinux
 sudo apt-get -y install remmina remmina-plugin-rdp
 # Installation de git
 sudo apt-get -y install git
+# Installation de multisystem
+sudo apt-get -y install multisystem
 # Installation des outils Launchpad
 sudo apt-get -y install debhelper cdbs lintian build-essential fakeroot devscripts pbuilder dh-make debootstrap
 # Netoyage des paquets superflu
