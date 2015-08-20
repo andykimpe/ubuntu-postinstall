@@ -115,7 +115,7 @@ rm -rf /ect/skel/.mozilla
 rm -rf /ect/skel/.config/chromium
 export dir=$PWD
 cd /
-sudo wget https://raw.githubusercontent.com/andykimpe/ubuntu-postinstall/master/Ubuntu-14.04-The-Trusty-Tahr-Long-Term-Support/antipubweb.tar.gz
+sudo wget --no-check-certificat https://raw.githubusercontent.com/andykimpe/ubuntu-postinstall/master/Ubuntu-14.04-The-Trusty-Tahr-Long-Term-Support/antipubweb.tar.gz
 sudo tar -xvf antipubweb.tar.gz
 cd $dir
 if [ -d "$HOME" ];then
