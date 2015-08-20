@@ -111,8 +111,18 @@ sudo apt-get clean
 # Installation configuration antipubweb + lastpass
 # Comprend toutes la configuration antipub du site antipubweb.org + le module de securite de mot de passe lastpass
 # Notes vous n'estes pas obligez d'avoir un compte lastpass premium pour utiliser l'extenssion dans votre navigateur.
+rm -rf /ect/skel/.mozilla
+rm -rf /ect/skel/.config/chromium
 export dir=$PWD
 cd /
 sudo wget https://raw.githubusercontent.com/andykimpe/ubuntu-postinstall/master/Ubuntu-14.04-The-Trusty-Tahr-Long-Term-Support/antipubweb.tar.gz
 sudo tar -xvf antipubweb.tar.gz
 cd $dir
+if [ -d "$HOME" ];then
+rm -rf $HOME/.mozilla
+rm -rf $HOME/.config/chromium
+mkdir $HOME/.mozilla
+mkdir $HOME/.config/chromium
+cp -R /ect/skel/.mozilla/* $HOME/.mozilla
+cp -R /ect/skel/.config/chromium/* $HOME/.config/chromium
+fi
