@@ -16,7 +16,7 @@ echo "Ce script est prevue pour fonctionner uniquement sur Ubuntu 14.04 Trusty L
 exit 1
 fi
 # suppression du depot proposed
-# l'activation de ce depot n'est pas recomender sur le lomps terme
+# l'activation de ce depot n'est pas recomender sur le long terme
 sudo rm -f /etc/apt/sources.list.d/proposed.list
 sudo rm -f /etc/apt/sources.list.d/proposed.list.save
 # configuration des depots
