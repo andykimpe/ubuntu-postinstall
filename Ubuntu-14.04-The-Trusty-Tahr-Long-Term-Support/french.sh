@@ -15,11 +15,11 @@ else
 echo "Ce script est prevue pour fonctionner uniquement sur Ubuntu 14.04 Trusty LTS." 
 exit 1
 fi
-# suppression du depot proposed
-# l'activation de ce depot n'est pas recomender sur le long terme
+# Suppression du depot proposed
+# L'activation de ce depot n'est pas recomender sur le long terme
 sudo rm -f /etc/apt/sources.list.d/proposed.list
 sudo rm -f /etc/apt/sources.list.d/proposed.list.save
-# configuration des depots
+# Configuration des depots de base
 sudo sh -c 'echo "deb http://fr.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse" > /etc/apt/sources.list'
 sudo sh -c 'echo "deb-src http://fr.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse" >> /etc/apt/sources.list'
 sudo sh -c 'echo "deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse" >> /etc/apt/sources.list'
@@ -28,26 +28,75 @@ sudo sh -c 'echo "deb http://fr.archive.ubuntu.com/ubuntu/ trusty-updates main r
 sudo sh -c 'echo "deb-src http://fr.archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list'
 sudo sh -c 'echo "deb http://archive.canonical.com/ubuntu trusty partner" >> /etc/apt/sources.list'
 sudo sh -c 'echo "deb-src http://archive.canonical.com/ubuntu trusty partner" >> /etc/apt/sources.list'
-# activation du depot trusty media
+# Activation du depot libreoffice
+sudo add-apt-repository ppa:libreoffice/ppa -y
+# Activation du depot trusty media
 sudo add-apt-repository ppa:mc3man/trusty-media -y
-# mise a jour de la liste des pacquet
+# Activation du depot wine1.7
+sudo add-apt-repository ppa:ubuntu-wine/ppa -y
+# Activation du depot Winff
+sudo add-apt-repository ppa:paul-climbing/ppa -y
+# Activation du depot avidemux
+sudo add-apt-repository ppa:rebuntu16/avidemux+unofficial -y
+# Activation du depot playonlinux
+wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
+sudo wget http://deb.playonlinux.com/playonlinux_trusty.list -O /etc/apt/sources.list.d/playonlinux.list
+# Activation du depot multisystem
+sudo sh -c 'echo "deb http://liveusb.info/multisystem/depot all main" > /etc/apt/sources.list.d/multisystem.list'
+wget -q http://liveusb.info/multisystem/depot/multisystem.asc -O- | sudo apt-key add -
+# Mise a jour de la liste des pacquet
 sudo apt-get update
+# Mise a jour du systeme
 sudo apt-get -y dist-upgrade
+# Installation de la tranduction francaise
 sudo apt-get -y install language-pack-fr thunderbird-locale-en-us libreoffice-l10n-en-za hyphen-en-us myspell-en-au
 sudo apt-get -y install thunderbird-locale-en-gb firefox-locale-fr libreoffice-help-fr mythes-en-us
 sudo apt-get -y install openoffice.org-hyphenation wbritish hunspell-en-ca mythes-fr thunderbird-locale-fr
 sudo apt-get -y install myspell-en-za myspell-en-gb mythes-en-au libreoffice-l10n-fr libreoffice-l10n-en-gb
 sudo apt-get -y install libreoffice-help-en-gb wfrench language-pack-gnome-fr hyphen-fr hunspell-fr
 sudo apt-get -y install thunderbird-locale-en
+# Installation des paquets necessaire a la modification des live cd
 sudo apt-get -y install squashfs-tools schroot genisoimage
-sudo add-apt-repository ppa:ubuntu-wine/ppa -y
+# Installation de Chromium
+sudo apt-get -y install chromium-browser
+# Installation de flashplayr pour Chromium
+sudo apt-get -y install pepperflashplugin-nonfree
+sudo update-pepperflashplugin-nonfree --install
+# Installation de flashplayr pour Firefox
+sudo add-apt-repository -y ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get -y install freshplayerplugin
+sudo add-apt-repository -y --remove ppa:nilarimogard/webupd8
+sudo apt-get update
+# Installation des greffons gstreamer
+sudo apt-get -y install gstreamer0.10-ffmpeg gstreamer0.10-plugins-ugly gstreamer0.10-fluendo-mp3
+# Installation de vlc
+sudo apt-get -y install vlc
+# Installation de ffmpeg et winff
+sudo apt-get -y install ffmpeg winff
+# Installation de avidemux
+sudo apt-get -y install avidemux2.6-gtk avidemux2.6-qt4
+# Installation de skype
+sudo apt-get -y install skype
+#Installation de xgo2 client
+sudo apt-get -y install x2goclient
+# reactivation du depot proposed pour l'installation de wine
+sudo sh -c 'echo "deb http://fr.archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/proposed.list'
+sudo sh -c 'echo "deb-src http://fr.archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse" >> /etc/apt/sources.list.d/proposed.list'
+# installation de wine1.7
 if [[ "$ARCH" == "x86_64" ]]; then
 sudo dpkg --add-architecture i386
 fi
-sudo sh -c 'echo "deb http://fr.archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/proposed.list'
-sudo sh -c 'echo "deb-src http://fr.archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse" >> /etc/apt/sources.list.d/proposed.list'
 sudo apt-get update
 sudo apt-get -y install wine1.7
+# Suppression du depot proposed
+# L'activation de ce depot n'est pas recomender sur le long terme
 sudo rm -f /etc/apt/sources.list.d/proposed.list
 sudo rm -f /etc/apt/sources.list.d/proposed.list.save
 sudo apt-get update
+# Installation de playonlinux
+sudo apt-get -y install playonlinux
+# Netoyage des paquets superflu
+sudo apt-get -y autoremove
+# Netoyage du cache de apt
+sudo apt-get clean
